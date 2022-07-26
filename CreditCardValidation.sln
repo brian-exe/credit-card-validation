@@ -5,11 +5,20 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditCardValidation.API", "CreditCardValidation.API\CreditCardValidation.API.csproj", "{FFEC4F89-BFF2-471A-95CA-B584650F7F9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Services", "CreditCardValidation.Services\CreditCardValidation.Services.csproj", "{62A953DB-87DD-4A08-83FA-9C877B227F5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditCardValidation.Services", "CreditCardValidation.Services\CreditCardValidation.Services.csproj", "{62A953DB-87DD-4A08-83FA-9C877B227F5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Models", "CreditCardValidation.Models\CreditCardValidation.Models.csproj", "{85460B93-26A2-4E18-AFD2-EEEBB762BA07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditCardValidation.Models", "CreditCardValidation.Models\CreditCardValidation.Models.csproj", "{85460B93-26A2-4E18-AFD2-EEEBB762BA07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Domain", "CreditCardValidation.Domain\CreditCardValidation.Domain.csproj", "{CC994CCD-6F4F-4248-ABEB-2FA1D9F588AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditCardValidation.Domain", "CreditCardValidation.Domain\CreditCardValidation.Domain.csproj", "{CC994CCD-6F4F-4248-ABEB-2FA1D9F588AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{91F8C4A1-9615-4469-BA6F-936333795237}"
+	ProjectSection(SolutionItems) = preProject
+		Solution Description.txt = Solution Description.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Tests.Services", "CreditCardValidation.Tests.Services\CreditCardValidation.Tests.Services.csproj", "{ABD548FC-5A76-4970-8F4A-CF7904C61E69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Abstractions", "CreditCardValidation.Abstractions\CreditCardValidation.Abstractions.csproj", "{F6EEFE14-02DD-4815-B648-65A5E8FDCAC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +42,14 @@ Global
 		{CC994CCD-6F4F-4248-ABEB-2FA1D9F588AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC994CCD-6F4F-4248-ABEB-2FA1D9F588AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC994CCD-6F4F-4248-ABEB-2FA1D9F588AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABD548FC-5A76-4970-8F4A-CF7904C61E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABD548FC-5A76-4970-8F4A-CF7904C61E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABD548FC-5A76-4970-8F4A-CF7904C61E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABD548FC-5A76-4970-8F4A-CF7904C61E69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6EEFE14-02DD-4815-B648-65A5E8FDCAC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6EEFE14-02DD-4815-B648-65A5E8FDCAC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6EEFE14-02DD-4815-B648-65A5E8FDCAC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6EEFE14-02DD-4815-B648-65A5E8FDCAC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

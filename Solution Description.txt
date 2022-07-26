@@ -1,0 +1,1 @@
+## A library could be used, but that means relying on a third party which we cannot control, hence, adding/removing/updating supported types and rules is out of our control.

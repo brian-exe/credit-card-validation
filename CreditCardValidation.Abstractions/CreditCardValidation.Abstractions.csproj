@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CreditCardValidation.Abstractions\CreditCardValidation.Abstractions.csproj" />
+    <ProjectReference Include="..\CreditCardValidation.Models\CreditCardValidation.Models.csproj" />
   </ItemGroup>
 
 </Project>
