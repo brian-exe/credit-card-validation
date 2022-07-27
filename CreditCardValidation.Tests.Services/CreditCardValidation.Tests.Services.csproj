@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CreditCardValidation.Abstractions\CreditCardValidation.Abstractions.csproj" />
+    <ProjectReference Include="..\CreditCardValidation.Services\CreditCardValidation.Services.csproj" />
+  </ItemGroup>
+
 </Project>
