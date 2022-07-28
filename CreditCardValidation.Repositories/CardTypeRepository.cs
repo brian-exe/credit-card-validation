@@ -23,8 +23,7 @@ namespace CreditCardValidation.Repositories
             {
                 Name = "Mastercard",
                 PrefixRules = new List<NumberPrefixRule>() { 
-                    new NumberPrefixRule() { Prefix = 51 }, 
-                    new NumberPrefixRule() { Prefix = 55 }, 
+                    new NumberPrefixRule() { Prefix = 5}, 
                     new NumberPrefixRule() { Prefix = 2221 }, 
                     new NumberPrefixRule() { Prefix = 2720 } 
                 },
