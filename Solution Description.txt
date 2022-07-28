@@ -1,1 +1,12 @@
-## A library could be used, but that means relying on a third party which we cannot control, hence, adding/removing/updating supported types and rules is out of our control.
+## A library could be used, but that implies relying on a third party which we cannot control, hence, adding/removing/updating supported types and rules is out of our control.
+## Expiration Date is assumed as input parameter (not issued date)
+## POST method in order to protect data in payload (via https) instead of url parameters.
+## Owner Data is considered valid if only contains alphabetic characters and space or comma. 
+	### Numbers in Owner Data is invalid
+	### a single string is invalid
+## Amex, Mastercard and Visa suported. 
+## Rules from research
+	### Luhn algorithm is mostly used for validation but not all cards require it (some cards don't)
+	### Amex: 15 digits for number, 4 digits for CVV
+	### Mastercard: 16 digits for number, 3 digits for CVV
+	### Visa: 16 digits for number, 3 digits for CVV
