@@ -1,6 +1,7 @@
 using CreditCardValidation.Abstractions.Services;
 using CreditCardValidation.Models;
 using CreditCardValidation.Models.Constants;
+using CreditCardValidation.Repositories;
 using CreditCardValidation.Services;
 using System;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace CreditCardValidation.Tests.Services
         private ICreditCardValidationService _service;
         public CreditCardValidationServiceTests()
         {
-            _service = new CreditCardValidationService();
+            _service = new CreditCardValidationService( new CardTypeRepository());
         }
         /// <summary>
         /// campos faltantes ==> error
@@ -29,7 +30,7 @@ namespace CreditCardValidation.Tests.Services
         {
             var model = new CreditCardValidationRequest()
             {
-                Number = 0123433534534534
+                Number = 40123433534534534
             };
             var result = _service.ValidateCreditCard(model);
 
@@ -42,7 +43,7 @@ namespace CreditCardValidation.Tests.Services
         {
             var model = new CreditCardValidationRequest()
             {
-                CVC = 4343,
+                CVV = 4343,
                 Number = 0123433534534534,
                 Expiration = new CardExpirationModel() { Month = 02, Year = 2026},
                 Owner = "owner"
@@ -59,7 +60,7 @@ namespace CreditCardValidation.Tests.Services
         {
             var model = new CreditCardValidationRequest()
             {
-                CVC = 434,
+                CVV = 434,
                 Number = 4111111111111111, //Visa (starts with 4)
                 Expiration = new CardExpirationModel() { Month = 02, Year = 2026 },
                 Owner = "Jon Doe"
@@ -76,7 +77,7 @@ namespace CreditCardValidation.Tests.Services
         {
             var model = new CreditCardValidationRequest()
             {
-                CVC = 434,
+                CVV = 434,
                 Number = 4111111111111111111, //Visa (starts with 4)
                 Expiration = new CardExpirationModel() { Month = 02, Year = 2026 },
                 Owner = "Jon doe"
@@ -92,7 +93,7 @@ namespace CreditCardValidation.Tests.Services
         {
             var model = new CreditCardValidationRequest()
             {
-                CVC = 43453,
+                CVV = 43453,
                 Number = 4765914316339760,
                 Expiration = new CardExpirationModel() { Month = 02, Year = 2026 },
                 Owner = "Jon doe"
@@ -109,7 +110,7 @@ namespace CreditCardValidation.Tests.Services
         {
             var model = new CreditCardValidationRequest()
             {
-                CVC = 434,
+                CVV = 434,
                 Number = 4765914316339760,
                 Expiration = new CardExpirationModel() { Month = 02, Year = 2026 },
                 Owner = "owner"
@@ -126,7 +127,7 @@ namespace CreditCardValidation.Tests.Services
         {
             var model = new CreditCardValidationRequest()
             {
-                CVC = 434,
+                CVV = 434,
                 Number = 4765914316339760,
                 Expiration = new CardExpirationModel() { Month = 02, Year = 2020 },
                 Owner = "Jon Doe"
@@ -143,7 +144,7 @@ namespace CreditCardValidation.Tests.Services
         {
             var model = new CreditCardValidationRequest()
             {
-                CVC = 4345,
+                CVV = 4345,
                 Number = 4111111111111111,
                 Expiration = new CardExpirationModel() { Month = 02, Year = 2020 },
                 Owner = "Jon"
@@ -162,7 +163,7 @@ namespace CreditCardValidation.Tests.Services
         {
             var model = new CreditCardValidationRequest()
             {
-                CVC = 434,
+                CVV = 434,
                 Number = 4765914316339760,
                 Expiration = new CardExpirationModel() { Month = 02, Year = 2026},
                 Owner = "Jon Doe"
@@ -178,7 +179,7 @@ namespace CreditCardValidation.Tests.Services
         {
             var model = new CreditCardValidationRequest()
             {
-                CVC = 111,
+                CVV = 111,
                 Number = 5239205771213904,
                 Expiration = new CardExpirationModel() { Month = 02, Year = 2026 },
                 Owner = "Jon Doe"

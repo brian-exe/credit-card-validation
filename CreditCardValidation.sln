@@ -16,9 +16,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Solution Description.txt = Solution Description.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Tests.Services", "CreditCardValidation.Tests.Services\CreditCardValidation.Tests.Services.csproj", "{ABD548FC-5A76-4970-8F4A-CF7904C61E69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditCardValidation.Tests.Services", "CreditCardValidation.Tests.Services\CreditCardValidation.Tests.Services.csproj", "{ABD548FC-5A76-4970-8F4A-CF7904C61E69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Abstractions", "CreditCardValidation.Abstractions\CreditCardValidation.Abstractions.csproj", "{F6EEFE14-02DD-4815-B648-65A5E8FDCAC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditCardValidation.Abstractions", "CreditCardValidation.Abstractions\CreditCardValidation.Abstractions.csproj", "{F6EEFE14-02DD-4815-B648-65A5E8FDCAC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Repositories", "CreditCardValidation.Repositories\CreditCardValidation.Repositories.csproj", "{7C05B07E-73F5-45D1-A761-C8023588813B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +52,10 @@ Global
 		{F6EEFE14-02DD-4815-B648-65A5E8FDCAC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6EEFE14-02DD-4815-B648-65A5E8FDCAC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6EEFE14-02DD-4815-B648-65A5E8FDCAC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C05B07E-73F5-45D1-A761-C8023588813B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C05B07E-73F5-45D1-A761-C8023588813B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C05B07E-73F5-45D1-A761-C8023588813B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C05B07E-73F5-45D1-A761-C8023588813B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
