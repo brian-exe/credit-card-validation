@@ -61,7 +61,7 @@ namespace CreditCardValidation.Tests.Services
             var model = new CreditCardValidationRequest()
             {
                 CVV = 434,
-                Number = 4111111111111111, //Visa (starts with 4)
+                Number = 4111111099111111, //Visa (starts with 4)
                 Expiration = new CardExpirationModel() { Month = 02, Year = 2026 },
                 Owner = "Jon Doe"
             };
@@ -145,7 +145,7 @@ namespace CreditCardValidation.Tests.Services
             var model = new CreditCardValidationRequest()
             {
                 CVV = 4345,
-                Number = 4111111111111111,
+                Number = 4111111101111111,
                 Expiration = new CardExpirationModel() { Month = 02, Year = 2020 },
                 Owner = "Jon"
             };

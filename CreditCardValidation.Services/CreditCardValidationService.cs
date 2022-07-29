@@ -3,6 +3,7 @@ using CreditCardValidation.Abstractions.Services;
 using CreditCardValidation.Domain;
 using CreditCardValidation.Models;
 using CreditCardValidation.Models.Constants;
+using CreditCardValidation.Services.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,8 +51,8 @@ namespace CreditCardValidation.Services
                 return response;
             }
 
-            if (!IsValidNumber(detectedType, model))
-                response.Errors.Add(new ApplicationError() { Code = ErrorCodes.InvalidCardNumberLength, Message = "Invalid card number", Type = ErrorTypes.ValidationError });
+            if (!IsValidNumber(model))
+                response.Errors.Add(new ApplicationError() { Code = ErrorCodes.InvalidCardNumber, Message = "Invalid card number", Type = ErrorTypes.ValidationError });
 
             if (!IsValidNumberLength(detectedType, model))
                 response.Errors.Add(new ApplicationError() { Code = ErrorCodes.InvalidCardNumberLength, Message = "Invalid length for card number", Type = ErrorTypes.ValidationError });
@@ -106,10 +107,8 @@ namespace CreditCardValidation.Services
             return false;
         }
 
-        private bool IsValidNumber(CardType detectedType, CreditCardValidationRequest model)
-        {
-            return true;
-        }
+        private bool IsValidNumber(CreditCardValidationRequest model)
+            => LuhnValidator.IsValidCardNumber(model.Number.ToString());
 
         private CardType DetectTypeFor(CreditCardValidationRequest model)
         {
