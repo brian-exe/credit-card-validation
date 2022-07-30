@@ -14,20 +14,6 @@ namespace CreditCardValidation.Services
     {
         private readonly ICardTypeRepository _repository;
 
-        /// <summary>
-        /// Detect type
-        ///     if not detected error unrecognized type
-        ///     if detected
-        ///         check number length
-        ///             error
-        ///         check cvv length
-        ///             error
-        ///         check owner data
-        ///             error
-        ///         check expiration date
-        ///             error
-        /// </summary>
-
         public CreditCardValidationService(ICardTypeRepository repository)
         {
             _repository = repository;
@@ -44,9 +30,9 @@ namespace CreditCardValidation.Services
                 return response;
             }
 
-            if (!AllDataProvided(model))
+            if (!ValidDataProvided(model))
             {
-                response.Errors.Add(new ApplicationError() { Code = ErrorCodes.MissingFields, Message = "There are missing fields", Type = ErrorTypes.ValidationError });
+                response.Errors.Add(new ApplicationError() { Code = ErrorCodes.MissingFields, Message = "Missing or incorrect fields were provided", Type = ErrorTypes.ValidationError });
                 response.Success = false;
                 return response;
             }
@@ -74,8 +60,18 @@ namespace CreditCardValidation.Services
             return response;
         }
 
-        private bool AllDataProvided(CreditCardValidationRequest model)
-            => model.CVV != 0 && model.Expiration != null && model.Number != 0 && model.Owner != null;
+        private bool ValidDataProvided(CreditCardValidationRequest model)
+        {
+            var result = true;
+
+            result = result && model.CVV != 0;
+            result = result && model.Expiration != null && model.Expiration.Month > 0 && model.Expiration.Month <= 12 && model.Expiration.Year > 0;
+            result = result && model.Expiration != null && model.Expiration.Month > 0 && model.Expiration.Month <= 12 && model.Expiration.Year > 0;
+            result = result && model.Number != 0;
+            result = result && model.Owner != null && model.Owner != "";
+
+            return result;
+        }
 
         private bool IsCardExpirationValid(CreditCardValidationRequest model)
         {
@@ -85,7 +81,7 @@ namespace CreditCardValidation.Services
         }
 
         private bool IsValidOwnerData(CreditCardValidationRequest model)
-            => model.Owner != null && model.Owner.Contains(" ") && !model.Owner.Any(char.IsDigit);
+            => model.Owner != null && model.Owner.Contains(" ") && !model.Owner.All(x => Char.IsLetter(x));
 
         private bool IsValidCVVLength(CardType detectedType, CreditCardValidationRequest model)
         {
