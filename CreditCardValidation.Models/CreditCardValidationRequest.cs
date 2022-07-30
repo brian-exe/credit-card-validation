@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CreditCardValidation.Models
+﻿namespace CreditCardValidation.Models
 {
     public class CreditCardValidationRequest
     {

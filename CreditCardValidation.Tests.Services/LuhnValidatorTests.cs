@@ -1,9 +1,4 @@
 ﻿using CreditCardValidation.Services.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace CreditCardValidation.Tests.Services
@@ -23,7 +18,7 @@ namespace CreditCardValidation.Tests.Services
         {
             Assert.False(LuhnValidator.IsValidCardNumber(number));
         }
-        
+
         [Theory]
         [InlineData("4915205476757332")]
         [InlineData("4915197626180459")]

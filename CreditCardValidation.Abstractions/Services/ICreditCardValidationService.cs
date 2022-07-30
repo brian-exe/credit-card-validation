@@ -1,5 +1,4 @@
 ﻿using CreditCardValidation.Models;
-using System;
 
 namespace CreditCardValidation.Abstractions.Services
 {

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CreditCardValidation.Models
 {
-    public class GenericApplicationResponse<T> where T: class
+    public class GenericApplicationResponse<T> where T : class
     {
         public GenericApplicationResponse()
         {

@@ -5,7 +5,6 @@ using CreditCardValidation.Models;
 using CreditCardValidation.Models.Constants;
 using CreditCardValidation.Services.Common;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace CreditCardValidation.Services
@@ -23,7 +22,7 @@ namespace CreditCardValidation.Services
             var response = new GenericApplicationResponse<CreditCardValidationResponse>();
             CardType detectedType = DetectTypeFor(model);
 
-            if(detectedType == null)
+            if (detectedType == null)
             {
                 response.Errors.Add(new ApplicationError() { Code = ErrorCodes.UnrecognizedCardType, Message = "Not recognized type for card", Type = ErrorTypes.ValidationError });
                 response.Success = false;
@@ -85,7 +84,7 @@ namespace CreditCardValidation.Services
 
         private bool IsValidCVVLength(CardType detectedType, CreditCardValidationRequest model)
         {
-            foreach(var r in detectedType.CVVLengthRules)
+            foreach (var r in detectedType.CVVLengthRules)
             {
                 if (model.CVV.ToString().Length == r.Length)
                     return true;
@@ -110,7 +109,7 @@ namespace CreditCardValidation.Services
         {
             var validTypes = _repository.GetSupportedCardTypes();
             CardType detectedType = null;
-            foreach(var t in validTypes)
+            foreach (var t in validTypes)
             {
                 if (t.PrefixRules.Any(p => model.Number.ToString().StartsWith(p.Prefix.ToString())))
                 {

@@ -3,8 +3,6 @@ using CreditCardValidation.Models;
 using CreditCardValidation.Models.Constants;
 using CreditCardValidation.Repositories;
 using CreditCardValidation.Services;
-using System;
-using System.Linq;
 using Xunit;
 
 namespace CreditCardValidation.Tests.Services
@@ -14,7 +12,7 @@ namespace CreditCardValidation.Tests.Services
         private ICreditCardValidationService _service;
         public CreditCardValidationServiceTests()
         {
-            _service = new CreditCardValidationService( new CardTypeRepository());
+            _service = new CreditCardValidationService(new CardTypeRepository());
         }
         [Fact]
         public void ValidateCreditCard_WhenCalledWithNotAllFieldsProvided_ReturnsMissingFieldsError()
@@ -36,7 +34,7 @@ namespace CreditCardValidation.Tests.Services
             {
                 CVV = 4343,
                 Number = 0123433534534534,
-                Expiration = new CardExpirationModel() { Month = 02, Year = 2026},
+                Expiration = new CardExpirationModel() { Month = 02, Year = 2026 },
                 Owner = "owner"
             };
             var result = _service.ValidateCreditCard(model);
@@ -62,7 +60,7 @@ namespace CreditCardValidation.Tests.Services
             Assert.Single(result.Errors);
             Assert.Contains(result.Errors, b => b.Type == ErrorTypes.ValidationError && b.Code == ErrorCodes.InvalidCardNumber);
         }
-        
+
         [Fact]
         public void ValidateCreditCard_WhenCalledWithRecognizedTypeButInvalidNumberLength_ReturnsInvalidCardNumberLengthError()
         {
@@ -159,7 +157,7 @@ namespace CreditCardValidation.Tests.Services
             {
                 CVV = 434,
                 Number = 4765914316339760,
-                Expiration = new CardExpirationModel() { Month = 02, Year = 2026},
+                Expiration = new CardExpirationModel() { Month = 02, Year = 2026 },
                 Owner = "Jon Doe"
             };
             var result = _service.ValidateCreditCard(model);
