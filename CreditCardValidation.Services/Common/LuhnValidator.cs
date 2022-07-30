@@ -10,17 +10,30 @@ namespace CreditCardValidation.Services.Common
     {
         public static bool IsValidCardNumber(string cardNumber)
         {
-			int nDigits = cardNumber.Length;
+			cardNumber.Trim().Replace(" ", "");
 
-			if (nDigits == 0 || nDigits == 1)
+			if (!cardNumber.All(x => Char.IsDigit(x)))
+				return false;
+
+			int length = cardNumber.Length;
+			
+			if (length == 0 || length == 1)
 				return false;
 
 			int nSum = 0;
+
+			// arrays start from 0 so we always have to subtract 1.
+			// If number of digits is Even, we should double odd positions. 
+			// If number of digits is Odd, we should double even positions. 
+			// Because we want to exclude last digit we then subsract always 2 or 3.
+			//int startingIndex = (length % 2 == 0) ? length - 2 : length - 3; 
+			int startingIndex =  length - 2; 
+
 			bool shouldDoubleDigit = true;
-			for (int i = nDigits - 1; i > 0; i--)
+			for (int i = startingIndex; i >= 0; i--)
 			{
 
-				int d = cardNumber[i-1] - '0'; //ascii substraction
+				int d = cardNumber[i] - '0'; //ascii substraction
 
 				if (shouldDoubleDigit)
                 {
@@ -32,7 +45,7 @@ namespace CreditCardValidation.Services.Common
 
 				shouldDoubleDigit = !shouldDoubleDigit;
 			}
-			int checkDigit = cardNumber[nDigits - 1] - '0';
+			int checkDigit = cardNumber[length - 1] - '0';
 			return ((nSum + checkDigit) % 10 == 0);
 		}
     }
