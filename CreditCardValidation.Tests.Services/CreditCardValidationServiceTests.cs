@@ -16,15 +16,6 @@ namespace CreditCardValidation.Tests.Services
         {
             _service = new CreditCardValidationService( new CardTypeRepository());
         }
-        /// <summary>
-        /// campos faltantes ==> error
-        /// campos completos pero numero invalido, no se encontró tipo válido
-        /// tipo reconocido pero invalido por luhn
-        /// tipo reconocido pero largo inválido
-        /// tipo reconocido pero cvv invalido
-        /// tipo reconocido pero owner inválido
-        /// tipo reconocido pero tarjeta expirada
-        /// </summary>
         [Fact]
         public void ValidateCreditCard_WhenCalledWithNotAllFieldsProvided_ReturnsMissingFieldsError()
         {
@@ -105,15 +96,18 @@ namespace CreditCardValidation.Tests.Services
             Assert.Contains(result.Errors, b => b.Type == ErrorTypes.ValidationError && b.Code == ErrorCodes.InvalidCardCVVLength);
         }
 
-        [Fact]
-        public void ValidateCreditCard_WhenCalledWithInvalidDataForOwner_ReturnsInvalidOwnerDataError()
+        [Theory]
+        [InlineData("Jon")]
+        [InlineData("44441111111111111")]
+        [InlineData("02/12/1992")]
+        public void ValidateCreditCard_WhenCalledWithInvalidDataForOwner_ReturnsInvalidOwnerDataError(string owner)
         {
             var model = new CreditCardValidationRequest()
             {
                 CVV = 434,
                 Number = 4765914316339760,
                 Expiration = new CardExpirationModel() { Month = 02, Year = 2026 },
-                Owner = "owner"
+                Owner = owner
             };
             var result = _service.ValidateCreditCard(model);
 
