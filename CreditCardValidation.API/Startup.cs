@@ -1,3 +1,6 @@
+using CreditCardValidation.Abstractions.Services;
+using CreditCardValidation.Abstractions.Repositories;
+using CreditCardValidation.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +14,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CreditCardValidation.Repositories;
+using CreditCardValidation.API.Middlewares;
 
 namespace CreditCardValidation.API
 {
@@ -26,6 +31,8 @@ namespace CreditCardValidation.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<ICreditCardValidationService, CreditCardValidationService>();
+            services.AddTransient<ICardTypeRepository, CardTypeRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -45,6 +52,7 @@ namespace CreditCardValidation.API
             }
 
             app.UseHttpsRedirection();
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseRouting();
 
