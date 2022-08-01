@@ -1,3 +1,5 @@
 .vs
 .git
-/CreditCardValidation.API/obj
+*/bin
+*/debug
+*/obj
