@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Logger\Configuration\**" />
+    <Compile Remove="Logger\Provider\**" />
+    <Content Remove="Logger\Configuration\**" />
+    <Content Remove="Logger\Provider\**" />
+    <EmbeddedResource Remove="Logger\Configuration\**" />
+    <EmbeddedResource Remove="Logger\Provider\**" />
+    <None Remove="Logger\Configuration\**" />
+    <None Remove="Logger\Provider\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>

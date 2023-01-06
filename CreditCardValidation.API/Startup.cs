@@ -1,5 +1,6 @@
 using CreditCardValidation.Abstractions.Repositories;
 using CreditCardValidation.Abstractions.Services;
+using CreditCardValidation.API.Logger;
 using CreditCardValidation.API.Middlewares;
 using CreditCardValidation.Repositories;
 using CreditCardValidation.Services;
@@ -8,6 +9,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Configuration;
 using Microsoft.OpenApi.Models;
 
 namespace CreditCardValidation.API
@@ -27,11 +30,25 @@ namespace CreditCardValidation.API
             services.AddTransient<ICreditCardValidationService, CreditCardValidationService>();
             services.AddTransient<ICardTypeRepository, CardTypeRepository>();
 
+            AddLogger(services);
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CreditCardValidation.API", Version = "v1" });
             });
+        }
+
+        public static void AddLogger(IServiceCollection services)
+        {
+            ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder.AddConsole();
+                builder.AddDebug();
+            });
+
+            services.AddSingleton(loggerFactory);
+            services.AddSingleton<ILoggerProxyFactory, LoggerProxyFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
