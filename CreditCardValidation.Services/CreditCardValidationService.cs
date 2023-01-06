@@ -66,7 +66,7 @@ namespace CreditCardValidation.Services
             result = result && model.CVV != 0;
             result = result && model.Expiration != null && model.Expiration.Month > 0 && model.Expiration.Month <= 12 && model.Expiration.Year > 0;
             result = result && model.Expiration != null && model.Expiration.Month > 0 && model.Expiration.Month <= 12 && model.Expiration.Year > 0;
-            result = result && model.Number != 0;
+            //result = result && model.Number != 0;
             result = result && model.Owner != null && model.Owner != "";
 
             return result;
