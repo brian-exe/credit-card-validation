@@ -1,4 +1,4 @@
-﻿namespace CreditCardValidation.API.Logger
+﻿namespace CreditCardValidation.Infrastructure.Logger
 {
     public interface ILoggerProxyFactory
     {

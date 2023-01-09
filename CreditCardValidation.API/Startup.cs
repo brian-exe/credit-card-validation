@@ -1,6 +1,6 @@
 using CreditCardValidation.Abstractions.Repositories;
 using CreditCardValidation.Abstractions.Services;
-using CreditCardValidation.API.Logger;
+using CreditCardValidation.Infrastructure.Logger;
 using CreditCardValidation.API.Middlewares;
 using CreditCardValidation.Repositories;
 using CreditCardValidation.Services;

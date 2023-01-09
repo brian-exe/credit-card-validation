@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace CreditCardValidation.API.Logger
+namespace CreditCardValidation.Infrastructure.Logger
 {
     public class LoggerProxyFactory : ILoggerProxyFactory
     {

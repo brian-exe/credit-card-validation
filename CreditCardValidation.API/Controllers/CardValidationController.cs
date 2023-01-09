@@ -1,5 +1,5 @@
 ﻿using CreditCardValidation.Abstractions.Services;
-using CreditCardValidation.API.Logger;
+using CreditCardValidation.Infrastructure.Logger;
 using CreditCardValidation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -23,7 +23,9 @@ namespace CreditCardValidation.API.Controllers
         [HttpPost("credit")]
         public ActionResult<GenericApplicationResponse<CreditCardValidationResponse>> ValidateCreditCard(CreditCardValidationRequest req)
         {
-            _logger.LogInformation("Probando 4123778912341234");
+            _logger.LogError("Credit card logging test 4123778912341234");
+            _logger.LogError("The Iban is {0}", "EE10 1234 1234 1234 1234 11");
+            _logger.LogError("Request received. Details of the request: {0}", req);
             var response = _cardValidationService.ValidateCreditCard(req);
 
             if (!response.Success && response.Errors.Any())

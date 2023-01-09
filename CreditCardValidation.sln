@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31911.196
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditCardValidation.API", "CreditCardValidation.API\CreditCardValidation.API.csproj", "{FFEC4F89-BFF2-471A-95CA-B584650F7F9D}"
 EndProject
@@ -20,7 +20,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditCardValidation.Tests.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditCardValidation.Abstractions", "CreditCardValidation.Abstractions\CreditCardValidation.Abstractions.csproj", "{F6EEFE14-02DD-4815-B648-65A5E8FDCAC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Repositories", "CreditCardValidation.Repositories\CreditCardValidation.Repositories.csproj", "{7C05B07E-73F5-45D1-A761-C8023588813B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditCardValidation.Repositories", "CreditCardValidation.Repositories\CreditCardValidation.Repositories.csproj", "{7C05B07E-73F5-45D1-A761-C8023588813B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Infrastructure", "CreditCardValidation.Infrastructure\CreditCardValidation.Infrastructure.csproj", "{5103EDA2-5CDC-443B-BF45-50D0DC3C1448}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +58,10 @@ Global
 		{7C05B07E-73F5-45D1-A761-C8023588813B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C05B07E-73F5-45D1-A761-C8023588813B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C05B07E-73F5-45D1-A761-C8023588813B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5103EDA2-5CDC-443B-BF45-50D0DC3C1448}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5103EDA2-5CDC-443B-BF45-50D0DC3C1448}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5103EDA2-5CDC-443B-BF45-50D0DC3C1448}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5103EDA2-5CDC-443B-BF45-50D0DC3C1448}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
