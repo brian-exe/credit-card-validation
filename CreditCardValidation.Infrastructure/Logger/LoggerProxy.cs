@@ -1,15 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
-using System.Reflection;
-using CreditCardValidation.Infrastructure.Logger.MaskingRules;
-using CreditCardValidation.Infrastructure.Logger.MaskingAttributes.Utils;
-using CreditCardValidation.Infrastructure.Logger.MaskingAttributes;
 using CreditCardValidation.Infrastructure.Logger.Processor;
 
 namespace CreditCardValidation.Infrastructure.Logger
 {
     public class LoggerProxy<TCategory> : ILoggerProxy<TCategory>
     {
-        private readonly ILogProcessor logProcessor;
+        private readonly LogProcessor logProcessor;
 
         public ILogger<TCategory> Logger { get; }
 

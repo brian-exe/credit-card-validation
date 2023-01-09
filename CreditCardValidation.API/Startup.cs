@@ -43,8 +43,10 @@ namespace CreditCardValidation.API
         {
             ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
             {
+                builder.ClearProviders();
                 builder.AddConsole();
                 builder.AddDebug();
+                builder.AddLog4Net();
             });
 
             services.AddSingleton(loggerFactory);

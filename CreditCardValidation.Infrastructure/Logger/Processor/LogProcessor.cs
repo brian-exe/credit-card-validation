@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace CreditCardValidation.Infrastructure.Logger.Processor
 {
-    public class LogProcessor : ILogProcessor
+    public class LogProcessor
     {
         private readonly List<IMaskingRule> maskingRules = new();
         public LogProcessor()
