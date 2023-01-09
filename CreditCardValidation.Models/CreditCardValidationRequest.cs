@@ -8,7 +8,6 @@ namespace CreditCardValidation.Models
 {
     public class CreditCardValidationRequest
     {
-        //[Destructurama.Attributed.LogAsScalar(isMutable:true)]
         [LogMasked(PreserveLength =true, ShowLast = 4)]
         public string Number { get; set; }
 
@@ -16,11 +15,6 @@ namespace CreditCardValidation.Models
         public int CVV { get; set; }
         public string Owner { get; set; }
         public CardExpirationModel Expiration { get; set; }
-
-        //public override string ToString()
-        //{
-        //    return JsonSerializer.Serialize(this);
-        //}
     }
 }
 

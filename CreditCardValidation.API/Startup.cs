@@ -49,7 +49,7 @@ namespace CreditCardValidation.API
         {
             var serilog = new LoggerConfiguration()
                 .MinimumLevel.Information()
-                .Enrich.FromLogContext()
+                //.Enrich.FromLogContext()
                 .Enrich.WithSensitiveDataMasking(options =>
                 {
                     options.MaskingOperators = new List<IMaskingOperator>()

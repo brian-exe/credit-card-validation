@@ -10,17 +10,11 @@ namespace CreditCardValidation.API.Logger
             this.Logger = logger;
         }
 
-
-        #region Properties
-
         public ILogger<TCategory> Logger { get; }
 
-        #endregion
-
-
-        #region Public Methods
         private void BasicLog(LogLevel logLevel, string message, params object[] args)
         {
+            //We can use this method to add other actions before and after logging
             this.Logger.Log(logLevel, message, args);
         }
 
@@ -38,24 +32,5 @@ namespace CreditCardValidation.API.Logger
 
         public void Log(string message)
             =>LogInformation(message, null);
-
-        #region Log Actions
-
-
-        #endregion
-
-
-        #region Log Function
-
-
-        #endregion
-
-
-        #endregion
-
-
-        #region Private Methods
-
-        #endregion
     }
 }
