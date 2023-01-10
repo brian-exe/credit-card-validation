@@ -15,7 +15,9 @@ using Serilog;
 using Serilog.Core;
 using Serilog.Debugging;
 using Serilog.Enrichers.Sensitive;
+using Serilog.Sinks.Graylog;
 using Serilog.Sinks.SystemConsole.Themes;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
@@ -47,9 +49,14 @@ namespace CreditCardValidation.API
 
         private void AddLogging(IServiceCollection services)
         {
+            Serilog.Debugging.SelfLog.Enable(Console.Error);
             var serilog = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                //.Enrich.FromLogContext()
+                .MinimumLevel.Error()
+                .Enrich.WithProcessId()
+                .Enrich.WithThreadId()
+                .Enrich.WithEnvironmentUserName()
+                .Enrich.WithMachineName()
+                .Enrich.FromLogContext()
                 .Enrich.WithSensitiveDataMasking(options =>
                 {
                     options.MaskingOperators = new List<IMaskingOperator>()
@@ -62,7 +69,13 @@ namespace CreditCardValidation.API
                     options.MaskProperties.Add("CVV");
 
                 })
+                .WriteTo.Graylog(new GraylogSinkOptions
+                {
+                    HostnameOrAddress = "localhost",
+                    Port = 12201,
+                })
                 .WriteTo.Console(theme: AnsiConsoleTheme.Code)
+                .WriteTo.File(path: "c:\\Temp\\serilog.log")
                 .CreateLogger();
 
             ILoggerFactory loggerFactory = new LoggerFactory().AddSerilog(serilog);
