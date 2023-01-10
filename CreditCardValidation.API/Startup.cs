@@ -1,9 +1,8 @@
 using CreditCardValidation.Abstractions.Repositories;
 using CreditCardValidation.Abstractions.Services;
 using CreditCardValidation.Logging.Logger;
-using CreditCardValidation.API.LoggerCustomizations;
 using CreditCardValidation.API.Middlewares;
-using CreditCardValidation.Logging;
+using CreditCardValidation.Logging.LoggerCustomizations;
 using CreditCardValidation.Repositories;
 using CreditCardValidation.Services;
 using Microsoft.AspNetCore.Builder;
@@ -59,8 +58,8 @@ namespace CreditCardValidation.API
                     options.MaskingOperators = new List<IMaskingOperator>()
                     {
                         new CustomCCMaskingOperator(fullMask: false),
-                        new IbanMaskingOperator(),
-                        new EmailAddressMaskingOperator(),
+                        new CustomIbanMaskingOperator(),
+                        new CustomEmailMaskingOperator(),
                     };
                     options.MaskValue = "*";
                     options.MaskProperties.Add("CVV");

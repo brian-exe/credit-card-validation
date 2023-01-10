@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Diagnostics.Eventing.Reader;
+using CreditCardValidation.Logging.Enum;
+using Serilog.Events;
+using Serilog.Context;
 
 namespace CreditCardValidation.Logging.Logger
 {
@@ -9,13 +12,15 @@ namespace CreditCardValidation.Logging.Logger
         {
             this.Logger = logger;
         }
+        private LoggingMaskingBehavior loggingMaskingBehavior = LoggingMaskingBehavior.None;
 
         public ILogger<TCategory> Logger { get; }
 
         private void BasicLog(LogLevel logLevel, string message, params object[] args)
         {
+            LogContext.PushProperty("Behavior", loggingMaskingBehavior);
             //We can use this method to add other actions before and after logging
-            this.Logger.Log(logLevel, message, args);
+            this.Logger.Log(logLevel, message, args.Append(loggingMaskingBehavior));
         }
 
         public void LogInformation(string message, params object[] args)
@@ -32,5 +37,17 @@ namespace CreditCardValidation.Logging.Logger
 
         public void Log(string message)
             =>LogInformation(message, null);
+
+        public ILoggerProxy<TCategory> IgnoringMaskingOperators()
+        {
+            loggingMaskingBehavior = LoggingMaskingBehavior.Ignore;
+            return this;
+        }
+
+        public ILoggerProxy<TCategory> StopMaskingOnFirstMaskOperatorMatch()
+        {
+            loggingMaskingBehavior = LoggingMaskingBehavior.StopOnFirst;
+            return this;
+        }
     }
 }

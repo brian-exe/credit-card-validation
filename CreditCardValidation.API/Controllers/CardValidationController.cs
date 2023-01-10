@@ -23,6 +23,10 @@ namespace CreditCardValidation.API.Controllers
         public ActionResult<GenericApplicationResponse<CreditCardValidationResponse>> ValidateCreditCard(CreditCardValidationRequest req)
         {
             loggerProxy.LogInformation("the CVV is {CVV}", req.CVV);
+            loggerProxy
+                .IgnoringMaskingOperators()
+                .LogInformation("the CVV is {CVV}", req.CVV);
+
             loggerProxy.LogInformation("Request received {@request}", req);
             loggerProxy.LogInformation("The iban is {IBAN}", "EE10A23511111114234567894234234");
 

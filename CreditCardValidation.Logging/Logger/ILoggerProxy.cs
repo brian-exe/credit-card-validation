@@ -6,6 +6,8 @@ namespace CreditCardValidation.Logging.Logger
     {
         ILogger<TCategory> Logger { get; }
 
+        ILoggerProxy<TCategory> IgnoringMaskingOperators();
+        ILoggerProxy<TCategory> StopMaskingOnFirstMaskOperatorMatch();
         void Log(string message);
         void LogInformation(string message, params object[] args);
         void LogError(string message, params object[] args);

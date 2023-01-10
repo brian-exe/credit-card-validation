@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace CreditCardValidation.Logging.LoggerCustomizations
 {
-    internal class CustomSensitiveDataEnricher : ILogEventEnricher
+    public class CustomSensitiveDataEnricher : ILogEventEnricher
     {
         private readonly MaskingMode _maskingMode;
         public const string DefaultMaskValue = "***MASKED***";
