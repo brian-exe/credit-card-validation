@@ -1,5 +1,5 @@
 ﻿using CreditCardValidation.Abstractions.Services;
-using CreditCardValidation.API.Logger;
+using CreditCardValidation.Logging.Logger;
 using CreditCardValidation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Diagnostics.Eventing.Reader;
 
-namespace CreditCardValidation.API.Logger
+namespace CreditCardValidation.Logging.Logger
 {
     public class LoggerProxy<TCategory> : ILoggerProxy<TCategory>
     {

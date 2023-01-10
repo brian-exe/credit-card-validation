@@ -1,7 +1,9 @@
 using CreditCardValidation.Abstractions.Repositories;
 using CreditCardValidation.Abstractions.Services;
-using CreditCardValidation.API.Logger;
+using CreditCardValidation.Logging.Logger;
+using CreditCardValidation.API.LoggerCustomizations;
 using CreditCardValidation.API.Middlewares;
+using CreditCardValidation.Logging;
 using CreditCardValidation.Repositories;
 using CreditCardValidation.Services;
 using Microsoft.AspNetCore.Builder;
@@ -49,8 +51,10 @@ namespace CreditCardValidation.API
         {
             var serilog = new LoggerConfiguration()
                 .MinimumLevel.Information()
-                //.Enrich.FromLogContext()
-                .Enrich.WithSensitiveDataMasking(options =>
+                .Enrich.FromLogContext()
+                //.Enrich.When((logEvent,condition) => { logEvent})
+                //.Enrich.WithSensitiveDataMasking(options =>
+                .Enrich.With(new CustomSensitiveDataEnricher(options =>
                 {
                     options.MaskingOperators = new List<IMaskingOperator>()
                     {
@@ -61,7 +65,7 @@ namespace CreditCardValidation.API
                     options.MaskValue = "*";
                     options.MaskProperties.Add("CVV");
 
-                })
+                }))
                 .WriteTo.Console(theme: AnsiConsoleTheme.Code)
                 .CreateLogger();
 

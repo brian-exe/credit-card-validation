@@ -1,7 +1,7 @@
 ﻿using Serilog.Enrichers.Sensitive;
 using System.Text.RegularExpressions;
 
-namespace CreditCardValidation.API
+namespace CreditCardValidation.Logging
 {
     public class CustomCCMaskingOperator : RegexMaskingOperator
     {

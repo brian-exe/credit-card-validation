@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CreditCardValidation.Abstractions\CreditCardValidation.Abstractions.csproj" />
+    <ProjectReference Include="..\CreditCardValidation.Logging\CreditCardValidation.Logging.csproj" />
     <ProjectReference Include="..\CreditCardValidation.Repositories\CreditCardValidation.Repositories.csproj" />
     <ProjectReference Include="..\CreditCardValidation.Services\CreditCardValidation.Services.csproj" />
   </ItemGroup>
