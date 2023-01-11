@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace CreditCardValidation.Logging.LoggerCustomizations
 {
-    public class CustomCCMaskingOperator : RegexMaskingOperator
+    public class CustomCCMaskingOperator : CustomRegexMaskingOperator
     {
         private const string CreditCardPartialReplacePattern = "(?<leading4>\\d{4}(?<sep>[ -]?)\\d{4}\\k<sep>?\\d{4}\\k<sep>?)(?<trailing4>\\d{4})";
 
@@ -14,6 +14,7 @@ namespace CreditCardValidation.Logging.LoggerCustomizations
         public CustomCCMaskingOperator()
             : this(fullMask: true)
         {
+            this.Precedence = 1;
         }
 
         public CustomCCMaskingOperator(bool fullMask)

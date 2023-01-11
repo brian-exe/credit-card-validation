@@ -6,17 +6,20 @@ using System.Collections.Generic;
 using System.Reflection;
 using System;
 using System.Linq;
+using CreditCardValidation.Logging.Enum;
+using System.Runtime.Versioning;
 
 namespace CreditCardValidation.Logging.LoggerCustomizations
 {
     public class CustomSensitiveDataEnricher : ILogEventEnricher
     {
         private readonly MaskingMode _maskingMode;
+        private int _maskingBehavior = LoggingMaskingBehavior.None;
         public const string DefaultMaskValue = "***MASKED***";
 
         private static readonly MessageTemplateParser Parser = new();
         private readonly FieldInfo _messageTemplateBackingField;
-        private readonly List<IMaskingOperator> _maskingOperators;
+        private readonly List<IMaskingOperator> _maskingOperatorsConfigured;
         private readonly string _maskValue;
         private readonly List<string> _maskProperties;
         private readonly List<string> _excludeProperties;
@@ -40,7 +43,7 @@ namespace CreditCardValidation.Logging.LoggerCustomizations
             _maskValue = enricherOptions.MaskValue;
             _maskProperties = enricherOptions.MaskProperties;
             _excludeProperties = enricherOptions.ExcludeProperties;
-            _maskingOperators = enricherOptions.MaskingOperators.ToList();
+            _maskingOperatorsConfigured = enricherOptions.MaskingOperators.ToList();
 
             var fields = typeof(LogEvent).GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
 
@@ -72,6 +75,11 @@ namespace CreditCardValidation.Logging.LoggerCustomizations
         {
             if (_maskingMode == MaskingMode.Globally || SensitiveArea.Instance != null)
             {
+                SetLoggingMaskingBehavior(logEvent);
+
+                if (_maskingBehavior == LoggingMaskingBehavior.Ignore)
+                    return;
+
                 var (wasTemplateMasked, messageTemplateText) = ReplaceSensitiveDataFromString(logEvent.MessageTemplate.Text);
 
                 // Only replace the template if it was actually masked
@@ -97,8 +105,19 @@ namespace CreditCardValidation.Logging.LoggerCustomizations
             }
         }
 
+        private void SetLoggingMaskingBehavior(LogEvent logEvent)
+        {
+            var key = nameof(LoggingMaskingBehavior);
+            if (logEvent.Properties.ContainsKey(key))
+            {
+                this._maskingBehavior = (int)(logEvent.Properties[key] as ScalarValue).Value;
+                logEvent.RemovePropertyIfPresent(key);//don't want to log it
+            }
+        }
+
         private (bool, LogEventPropertyValue?) MaskProperty(KeyValuePair<string, LogEventPropertyValue> property)
         {
+
             if (_excludeProperties.Contains(property.Key, StringComparer.InvariantCultureIgnoreCase))
             {
                 return (false, null);
@@ -193,7 +212,7 @@ namespace CreditCardValidation.Logging.LoggerCustomizations
         {
             var isMasked = false;
 
-            foreach (var maskingOperator in _maskingOperators)
+            foreach (var maskingOperator in _maskingOperatorsConfigured)
             {
                 var maskResult = maskingOperator.Mask(input, _maskValue);
 
@@ -201,6 +220,8 @@ namespace CreditCardValidation.Logging.LoggerCustomizations
                 {
                     isMasked = true;
                     input = maskResult.Result;
+                    if (_maskingBehavior == LoggingMaskingBehavior.StopOnFirst)
+                        break;
                 }
             }
 

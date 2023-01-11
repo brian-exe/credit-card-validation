@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CreditCardValidation.Logging.Enum
 {
-    public enum LoggingMaskingBehavior
+    public static class LoggingMaskingBehavior
     {
-        None,
-        Ignore,
-        StopOnFirst
+        public static readonly int None = 0;
+        public static readonly int Ignore = 1;
+        public static readonly int StopOnFirst = 2;
     }
 }

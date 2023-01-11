@@ -11,6 +11,7 @@ namespace CreditCardValidation.Logging.LoggerCustomizations
     public abstract class CustomRegexMaskingOperator : IMaskingOperator
     {
         private readonly Regex _regex;
+        public int Precedence { get; set; }
 
         protected CustomRegexMaskingOperator(string regexString)
             : this(regexString, RegexOptions.Compiled)

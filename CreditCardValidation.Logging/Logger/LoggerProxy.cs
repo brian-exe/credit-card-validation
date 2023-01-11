@@ -12,13 +12,13 @@ namespace CreditCardValidation.Logging.Logger
         {
             this.Logger = logger;
         }
-        private LoggingMaskingBehavior loggingMaskingBehavior = LoggingMaskingBehavior.None;
+        private int loggingMaskingBehavior = LoggingMaskingBehavior.None;
 
         public ILogger<TCategory> Logger { get; }
 
         private void BasicLog(LogLevel logLevel, string message, params object[] args)
         {
-            LogContext.PushProperty("Behavior", loggingMaskingBehavior);
+            LogContext.PushProperty(nameof(LoggingMaskingBehavior), loggingMaskingBehavior);
             //We can use this method to add other actions before and after logging
             this.Logger.Log(logLevel, message, args.Append(loggingMaskingBehavior));
         }

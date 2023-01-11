@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace CreditCardValidation.Logging.LoggerCustomizations
 {
-    public class CustomIbanMaskingOperator : RegexMaskingOperator
+    public class CustomIbanMaskingOperator : CustomRegexMaskingOperator
     {
         private const string IbanReplacePattern = "[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}";
 
         public CustomIbanMaskingOperator()
-            : base("[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}")
+            : base(IbanReplacePattern)
         {
+            this.Precedence = 2;
         }
     }
 }
